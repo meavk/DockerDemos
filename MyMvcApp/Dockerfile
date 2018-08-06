@@ -1,0 +1,12 @@
+# Sample contents of Dockerfile
+# Stage 1
+FROM microsoft/aspnetcore-build AS builder
+WORKDIR /source
+COPY MyMvcApp/ .
+RUN dotnet publish MyMvcApp --output /app/ --configuration Release
+
+# Stage 2
+FROM microsoft/aspnetcore
+WORKDIR /app
+COPY --from=builder /app .
+ENTRYPOINT ["dotnet", "MyMvcApp.dll"]
