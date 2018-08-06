@@ -3,7 +3,7 @@
 FROM microsoft/aspnetcore-build AS builder
 WORKDIR /source
 COPY MyMvcApp/ .
-RUN dotnet publish MyMvcApp --output /app/ --configuration Release
+RUN dotnet publish --output /app/ --configuration Release
 
 # Stage 2
 FROM microsoft/aspnetcore
