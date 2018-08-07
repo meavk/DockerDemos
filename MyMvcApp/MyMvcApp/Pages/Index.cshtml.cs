@@ -9,9 +9,15 @@ namespace MyMvcApp.Pages
 {
     public class IndexModel : PageModel
     {
+        public int TotalVisits { get; set; }
+        public int InstanceVisits { get; set; }
+
         public void OnGet()
         {
-
+            RedisDatabase.IncrementValue("TotalVisits");
+            this.TotalVisits = RedisDatabase.GetIntegerValue("TotalVisits");
+            InMemoryDatabase.IncrementValue();
+            this.InstanceVisits = InMemoryDatabase.GetIntegerValue();
         }
     }
 }
