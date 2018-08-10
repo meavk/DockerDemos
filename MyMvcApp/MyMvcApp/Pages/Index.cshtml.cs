@@ -16,10 +16,9 @@ namespace MyMvcApp.Pages
         public void OnGet()
         {
             this.Intance = InMemoryDatabase.Intance;
-            RedisDatabase.IncrementValue("TotalVisits");
-            this.TotalVisits = RedisDatabase.GetIntegerValue("TotalVisits");
             InMemoryDatabase.IncrementValue();
             this.InstanceVisits = InMemoryDatabase.GetIntegerValue();
+            this.TotalVisits = InMemoryDatabase.GetIntegerValue();
         }
     }
 }
